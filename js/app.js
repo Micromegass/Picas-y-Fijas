@@ -16,27 +16,78 @@
 
 
 
-var correct = Math.floor(Math.random() * 9999);
+
+
+$(document).ready(function() {
+
+    var first = Math.floor(Math.random() * 9);
+    var second = Math.floor(Math.random() * 9);
+    var third = Math.floor(Math.random() * 9);
+    var fourth = Math.floor(Math.random() * 9);
+
+    var rand = [first, second, third, fourth];
+    
+    //shuffle until no repeating elements
+    while ((rand[0] == rand[1]) || (rand[1] == rand[2]) || (rand[2] == rand[3]) || (rand[3] == rand[4]) ) {
+     shuffle(rand); 
+     return rand;
+    } 
+
+        console.log(rand.join(''));
+        console.log(rand[0]);
+
+
+});
+
+
+
+
+
+
+
+
+
+
+
+//Fisher-Yates Algorithm to shuffle elements
+function shuffle(array) {
+    var i = 0,
+        j = 0,
+        temp = null
+
+    for (i = array.length - 1; i > 0; i -= 1) {
+        j = Math.floor(Math.random() * (i + 1))
+        temp = array[i]
+        array[i] = array[j]
+        array[j] = temp
+    }
+}
+
+
+
+
+
+
+
 var picas = 0;
 var fijas = 0; 
 
+// $("#input").on('keypress', function (e) {
 
-$("#input").on('keypress', function(e) {
+//     if (e.which == 13) {
 
-    if (e.which == 13) {
+//         var number = $(this).val()
 
-       var number = $(this).val()
-    
-        console.log(number);
+//         console.log(number);
 
-    } else {
+//     } else {
 
-        console.log(correct)
+//         console.log(correct)
 
-    };
- });
+//     };
+// });
+
  
-
 
 
 
