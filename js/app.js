@@ -41,6 +41,22 @@ $(document).ready(function() {
 
 
 
+$('#input').on('keypress', function(e) {
+
+
+    if (e.which == 13) {
+        var number = $(this).val();
+        number = Array.from(number);
+        console.log(number);
+
+       }
+
+});
+
+
+
+
+
 
 
 
