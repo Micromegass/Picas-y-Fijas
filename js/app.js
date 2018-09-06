@@ -17,7 +17,7 @@
 
 
 
-
+// creating random number
 $(document).ready(function() {
 
     var first = Math.floor(Math.random() * 9);
@@ -41,27 +41,15 @@ $(document).ready(function() {
 
 
 
+
+//splitting input into array
 $('#input').on('keypress', function(e) {
-
-
     if (e.which == 13) {
         var number = $(this).val();
         number = Array.from(number);
         console.log(number);
-
        }
-
 });
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -88,22 +76,6 @@ function shuffle(array) {
 var picas = 0;
 var fijas = 0; 
 
-// $("#input").on('keypress', function (e) {
-
-//     if (e.which == 13) {
-
-//         var number = $(this).val()
-
-//         console.log(number);
-
-//     } else {
-
-//         console.log(correct)
-
-//     };
-// });
-
- 
 
 
 
