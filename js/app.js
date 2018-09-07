@@ -33,7 +33,7 @@ $(document).ready(function() {
      return rand;
     } 
 
-        console.log(rand.join(''));
+        console.log(rand);
         console.log(rand[0]);
 
 
@@ -47,7 +47,8 @@ $('#input').on('keypress', function(e) {
     if (e.which == 13) {
         var number = $(this).val();
         number = Array.from(number);
-        console.log(number);
+        var num = number.map(Number);
+        console.log(num);
        }
 });
 
