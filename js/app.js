@@ -15,10 +15,8 @@
 // 2. cannot be a number which repeats (3333)
 
 
-
-
-// creating random number
-$(document).ready(function() {
+// creating random number and hiding table
+$(document).ready(function () {
 
     var first = Math.floor(Math.random() * 9);
     var second = Math.floor(Math.random() * 9);
@@ -26,15 +24,47 @@ $(document).ready(function() {
     var fourth = Math.floor(Math.random() * 9);
 
     var rand = [first, second, third, fourth];
-    
-    //shuffle until no repeating elements
-    while ((rand[0] == rand[1]) || (rand[1] == rand[2]) || (rand[2] == rand[3]) || (rand[3] == rand[4]) ) {
-     shuffle(rand); 
-     return rand;
-    } 
 
-        console.log(rand);
-        console.log(rand[0]);
+    //shuffle until no repeating elements with Fisher-Yates
+    while ((rand[0] == rand[1]) || (rand[1] == rand[2]) || (rand[2] == rand[3]) || (rand[3] == rand[4])) {
+        shuffle(rand);
+        return rand;
+    }
+    console.log(rand.join(''));
+
+    $('table').hide()
+
+
+
+    //splitting input into array and blocking input if number longer than 4 digits or repeating numbers
+    $('#input').on('keypress', function (e) {
+        if (e.which == 13) {
+            var number = $(this).val();
+
+            if (rand.join('') == number) {
+                  alert('you win');
+            } else {
+
+            number = Array.from(number);
+            if (((number.length > 4) || (number[0] == number[1]) || (number[1] == number[2]) || (number[2] == number[3]) || (number[3] == number[4]))) {
+
+                $('#errorcheck').addClass("color");
+
+            } else {
+                $('#errorcheck').removeClass("color");
+                var num = number.map(Number);
+                console.log(num.join(''));
+
+                $('table').show();              
+
+                $('table').append('<tr><td>' + num.join('') + '</tr> </td>');
+
+
+                }
+              
+            }
+        }
+    });
 
 
 });
@@ -42,15 +72,14 @@ $(document).ready(function() {
 
 
 
-//splitting input into array
-$('#input').on('keypress', function(e) {
-    if (e.which == 13) {
-        var number = $(this).val();
-        number = Array.from(number);
-        var num = number.map(Number);
-        console.log(num);
-       }
-});
+
+
+
+
+
+
+
+
 
 
 
@@ -70,16 +99,5 @@ function shuffle(array) {
 
 
 
-
-
-
-
 var picas = 0;
-var fijas = 0; 
-
-
-
-
-
-
-
+var fijas = 0;
