@@ -31,7 +31,6 @@ $(document).ready(function () {
     }
     console.log(rand.join(''));
 
-    $('table').hide()
 
 
     //splitting input into array and blocking input if number longer than 4 digits or repeating numbers
@@ -53,7 +52,6 @@ $(document).ready(function () {
                     var num = number.map(Number);
                     console.log(num.join(''));
 
-                    $('table').show();
                     $('table').append('<tr><td>' + num.join('') + '</tr> </td>');
 
 
@@ -90,22 +88,28 @@ $(document).ready(function () {
         }
     });
 
+
+
+
+    //Fisher-Yates Algorithm to shuffle elements
+    function shuffle(array) {
+        var m = array.length,
+            t, i;
+        // While there remain elements to shuffle…
+        while (m) {
+            // Pick a remaining element…
+            i = Math.floor(Math.random() * m--);
+            // And swap it with the current element.
+            t = array[m];
+            array[m] = array[i];
+            array[i] = t;
+        }
+        return array;
+    }
+
+
+
 });
 
 
-
-//Fisher-Yates Algorithm to shuffle elements
-function shuffle(array) {
-    var m = array.length, t, i;
-    // While there remain elements to shuffle…
-    while (m) {
-        // Pick a remaining element…
-        i = Math.floor(Math.random() * m--);
-        // And swap it with the current element.
-        t = array[m];
-        array[m] = array[i];
-        array[i] = t;
-    }
-    return array;
-}
 
