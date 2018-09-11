@@ -17,19 +17,23 @@
 // creating random number and hiding table
 $(document).ready(function () {
 
-    var first = Math.floor(Math.random() * 9);
-    var second = Math.floor(Math.random() * 9);
-    var third = Math.floor(Math.random() * 9);
-    var fourth = Math.floor(Math.random() * 9);
+    //create array
+    var rand = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
 
-    var rand = [first, second, third, fourth];
-
-    //shuffle until no repeating elements with Fisher-Yates
-    while ((rand[0] == rand[1]) || (rand[1] == rand[2]) || (rand[2] == rand[3]) || (rand[3] == rand[4])) {
-        shuffle(rand);
-        return rand;
+    //shuffle array 
+    function shuffleArray(array) {
+        for (var i = array.length - 1; i > 0; i--) {
+            var j = Math.floor(Math.random() * (i + 1));
+            var temp = array[i];
+            array[i] = array[j];
+            array[j] = temp;
+        }
+        return array;
     }
-    console.log(rand.join(''));
+
+    //take out first 4 shuffled numbers
+    rand = shuffleArray(rand).slice(0, 4).join('');
+    console.log(rand);
 
 
 
@@ -76,7 +80,6 @@ $(document).ready(function () {
                             fijas = fijas + 1;
                         }
                     }
-
                     picas = picas - fijas;
                     alert(picas);
                     //  alert(fijas);
@@ -88,28 +91,4 @@ $(document).ready(function () {
         }
     });
 
-
-
-
-    //Fisher-Yates Algorithm to shuffle elements
-    function shuffle(array) {
-        var m = array.length,
-            t, i;
-        // While there remain elements to shuffle…
-        while (m) {
-            // Pick a remaining element…
-            i = Math.floor(Math.random() * m--);
-            // And swap it with the current element.
-            t = array[m];
-            array[m] = array[i];
-            array[i] = t;
-        }
-        return array;
-    }
-
-
-
-});
-
-
-
+}); //end of document ready
