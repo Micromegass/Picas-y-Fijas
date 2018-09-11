@@ -1,5 +1,4 @@
 //Pseudocode
-
 // 1. Create random Number and save it variable
 // 2. get value from textfield on hitting enter and save it to variable
 // 3. save number in table 
@@ -32,8 +31,6 @@ $(document).ready(function () {
     }
     console.log(rand.join(''));
 
-    $('table').hide()
-
 
 
     //splitting input into array and blocking input if number longer than 4 digits or repeating numbers
@@ -42,62 +39,77 @@ $(document).ready(function () {
             var number = $(this).val();
 
             if (rand.join('') == number) {
-                  alert('you win');
+                alert('you win');
             } else {
 
-            number = Array.from(number);
-            if (((number.length > 4) || (number[0] == number[1]) || (number[1] == number[2]) || (number[2] == number[3]) || (number[3] == number[4]))) {
+                number = Array.from(number);
+                if (((number.length > 4) || (number[0] == number[1]) || (number[1] == number[2]) || (number[2] == number[3]) || (number[3] == number[4]))) {
 
-                $('#errorcheck').addClass("color");
+                    $('#errorcheck').addClass("color");
 
-            } else {
-                $('#errorcheck').removeClass("color");
-                var num = number.map(Number);
-                console.log(num.join(''));
+                } else {
+                    $('#errorcheck').removeClass("color");
+                    var num = number.map(Number);
+                    console.log(num.join(''));
 
-                $('table').show();              
+                    $('table').append('<tr><td>' + num.join('') + '</tr> </td>');
 
-                $('table').append('<tr><td>' + num.join('') + '</tr> </td>');
 
+                    //loop to determine picas
+                    var picas = 0;
+                    for (i = 0; i < number.length; i++) {
+                        for (j = 0; j < rand.length; j++) {
+
+                            if ((number[i] == rand[j])) {
+                                picas = picas + 1;
+                            }
+                        }
+                    }
+                    //end loop to determine picas
+
+
+
+                    //loop to determine fijas
+                    var fijas = 0;
+                    for (i = 0; i < number.length; i++) {
+                        if (number[i] == rand[i]) {
+                            fijas = fijas + 1;
+                        }
+                    }
+
+                    picas = picas - fijas;
+                    alert(picas);
+                    //  alert(fijas);
+                    // end loop to determine fijas
 
                 }
-              
+
             }
         }
     });
+
+
+
+
+    //Fisher-Yates Algorithm to shuffle elements
+    function shuffle(array) {
+        var m = array.length,
+            t, i;
+        // While there remain elements to shuffle…
+        while (m) {
+            // Pick a remaining element…
+            i = Math.floor(Math.random() * m--);
+            // And swap it with the current element.
+            t = array[m];
+            array[m] = array[i];
+            array[i] = t;
+        }
+        return array;
+    }
+
 
 
 });
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-//Fisher-Yates Algorithm to shuffle elements
-function shuffle(array) {
-    var i = 0,
-        j = 0,
-        temp = null
-
-    for (i = array.length - 1; i > 0; i -= 1) {
-        j = Math.floor(Math.random() * (i + 1))
-        temp = array[i]
-        array[i] = array[j]
-        array[j] = temp
-    }
-}
-
-
-
-var picas = 0;
-var fijas = 0;
