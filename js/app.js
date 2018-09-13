@@ -47,9 +47,21 @@ $(document).ready(function () {
             } else {
 
                 number = Array.from(number);
-                if (((number.length > 4) || (number[0] == number[1]) || (number[1] == number[2]) || (number[2] == number[3]) || (number[3] == number[4]))) {
 
-                    $('#errorcheck').addClass("color");
+                //check for duplicates
+                function duplicates(array) {
+                    for (var i = 0; i < array.length; i++) {
+                        for (var j = i + 1; j < array.length; j++) {
+                            if (array[i] === array[j]) {
+                                return true;
+                            }
+                        }
+                    }
+                }
+                //end duplicate
+                duplicates = duplicates(number);
+                if ((number.length > 4) || (duplicates == true)) {
+                $('#errorcheck').addClass("color");
 
                 } else {
                     $('#errorcheck').removeClass("color");
@@ -85,9 +97,16 @@ $(document).ready(function () {
                     picas = picas - fijas;
                     alert(picas);
 
+
                 }
 
             }
         }
+
     }); //end of keypress function
+
 }); //end of document ready
+
+
+
+
