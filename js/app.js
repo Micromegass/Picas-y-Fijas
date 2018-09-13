@@ -42,7 +42,7 @@ $(document).ready(function () {
         if (e.which == 13) {
             var number = $(this).val();
 
-            if (rand.join('') == number) {
+            if (rand  == number) {
                 alert('you win');
             } else {
 
@@ -80,15 +80,14 @@ $(document).ready(function () {
                             fijas = fijas + 1;
                         }
                     }
+                    //Subtract fijas // end loop to determine fijas
+
                     picas = picas - fijas;
                     alert(picas);
-                    //  alert(fijas);
-                    // end loop to determine fijas
 
                 }
 
             }
         }
-    });
-
+    }); //end of keypress function
 }); //end of document ready
