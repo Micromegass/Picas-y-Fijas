@@ -36,39 +36,26 @@ $(document).ready(function () {
     console.log(rand);
 
 
-
     //splitting input into array and blocking input if number longer than 4 digits or repeating numbers
     $('#input').on('keypress', function (e) {
         if (e.which == 13) {
             var number = $(this).val();
 
-            if (rand  == number) {
+            if (rand == number) {
                 alert('you win');
             } else {
 
                 number = Array.from(number);
-
-                //check for duplicates
-                function duplicates(array) {
-                    for (var i = 0; i < array.length; i++) {
-                        for (var j = i + 1; j < array.length; j++) {
-                            if (array[i] === array[j]) {
-                                return true;
-                            }
-                        }
-                    }
-                }
-                //end duplicate
                 duplicates = duplicates(number);
-                if ((number.length > 4) || (duplicates == true)) {
-                $('#errorcheck').addClass("color");
+                
+                if ((number.length > 4) || (number.length < 4) || (duplicates == true)) {
+                    $('#errorcheck').addClass("color");
 
                 } else {
                     $('#errorcheck').removeClass("color");
                     var num = number.map(Number);
                     console.log(num.join(''));
 
-                    $('table').append('<tr><td>' + num.join('') + '</tr> </td>');
 
 
                     //loop to determine picas
@@ -80,9 +67,9 @@ $(document).ready(function () {
                                 picas = picas + 1;
                             }
                         }
+
                     }
                     //end loop to determine picas
-
 
 
                     //loop to determine fijas
@@ -93,9 +80,11 @@ $(document).ready(function () {
                         }
                     }
                     //Subtract fijas // end loop to determine fijas
-
                     picas = picas - fijas;
-                    alert(picas);
+
+                   //append picas and fijas
+                    $('table').append('<tr><td>' + num.join('') + '</td>' + '<td>' + picas + '</td>' + '<td>' + fijas + '</td></tr>');
+
 
 
                 }
@@ -103,10 +92,22 @@ $(document).ready(function () {
             }
         }
 
+
+
+        //check for duplicates
+        function duplicates(array) {
+            for (var i = 0; i < array.length; i++) {
+                for (var j = i + 1; j < array.length; j++) {
+                    if (array[i] === array[j]) {
+                        return true;
+                    }
+                }
+            }
+        }
+        //end duplicate
+
+
+
     }); //end of keypress function
 
 }); //end of document ready
-
-
-
-
