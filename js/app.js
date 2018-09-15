@@ -17,6 +17,8 @@
 // creating random number and hiding table
 $(document).ready(function () {
 
+    $('.result').hide();
+
     //create array
     var rand = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
 
@@ -42,7 +44,11 @@ $(document).ready(function () {
             var number = $(this).val();
 
             if (rand == number) {
-                alert('you win');
+                $(this).addClass('scale');
+                $('.result').show();
+
+
+
             } else {
 
                 number = Array.from(number);
