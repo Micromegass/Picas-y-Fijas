@@ -9,7 +9,7 @@
 // 6. if number correct scale effect + ganaste
 // 7. make it an endless game 
 
-// Extra:
+// Conditions:
 // 1. Restrict textfield to 4 numbers (change color of paragraph)
 // 2. cannot be a number which repeats (3333)
 
