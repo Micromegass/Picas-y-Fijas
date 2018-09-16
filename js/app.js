@@ -20,56 +20,77 @@
 
 $(document).ready(function () {
 
-     $('.result').hide();
+    //containers for numbers
+    randNum2 = null;
+    rand = [];
 
-     //create array
-     var rand = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+    //initializing game
+    game();
 
-     //shuffle array 
-     function shuffleArray(array) {
-         for (var i = array.length - 1; i > 0; i--) {
-             var j = Math.floor(Math.random() * (i + 1));
-             var temp = array[i];
-             array[i] = array[j];
-             array[j] = temp;
-         }
-         return array;
-      }
-    
+    //creating, shuffling array and pushing to containers to make global 
+    function game() {
+        $('.result').hide();
+        //create array
+        var rand0 = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
 
-     //take out first 4 shuffled numbers
-     rand = shuffleArray(rand).slice(0, 4).join('');
-     console.log(rand);
+        //shuffle array 
+        function shuffleArray(array) {
+            for (var i = array.length - 1; i > 0; i--) {
+                var j = Math.floor(Math.random() * (i + 1));
+                var temp = array[i];
+                array[i] = array[j];
+                array[j] = temp;
+            }
+            return array;
+        }
 
-    
-    
+
+        //take out first 4 shuffled numbers
+        var randNum = shuffleArray(rand0).slice(0, 4);
+
+        //pushing shuffled array, first 4 numbers to global variable rand
+        for (i = 0; i < randNum.length; i++) {
+            rand.push(randNum[i]);
+        }
+
+        //outputing array as number
+        randNum2 = randNum.join('');
+        console.log(randNum2);
+
+    }
+
+    // making infinite game 
+    $('button').on('click', function () {
+        $('input').removeClass('scale');
+        location.reload(true)
+    });
+
+
     //splitting input into array and blocking input if number longer than 4 digits or repeating numbers
     $('#input').on('keypress', function (e) {
         if (e.which == 13) {
             var number = $(this).val();
 
-            if (rand == number) {
+            //wining
+            if (randNum2 == number) {
                 $(this).addClass('scale');
                 $('.result').show();
-                
-                $('button').on('click', function () {
-                    $('input').removeClass('scale');
-                });
 
-
+                //otherwise errorchecking
             } else {
 
+                //transform number to array and check for duplicates
                 number = Array.from(number);
                 duplicates = duplicates(number);
-                
+
                 if ((number.length > 4) || (number.length < 4) || (duplicates == true)) {
                     $('#errorcheck').addClass("color");
 
+                    //when no errors transform back to number
                 } else {
                     $('#errorcheck').removeClass("color");
                     var num = number.map(Number);
                     console.log(num.join(''));
-
 
 
                     //loop to determine picas
@@ -81,7 +102,6 @@ $(document).ready(function () {
                                 picas = picas + 1;
                             }
                         }
-
                     }
                     //end loop to determine picas
 
@@ -96,17 +116,12 @@ $(document).ready(function () {
                     //Subtract fijas // end loop to determine fijas
                     picas = picas - fijas;
 
-                   //append picas and fijas
+                    //append picas and fijas
                     $('table').append('<tr><td>' + num.join('') + '</td>' + '<td>' + picas + '</td>' + '<td>' + fijas + '</td></tr>');
 
-
-
                 }
-
             }
         }
-
-    
 
         //check for duplicates
         function duplicates(array) {
@@ -120,15 +135,6 @@ $(document).ready(function () {
         }
         //end duplicate
 
-
-
-    
-
     }); //end of keypress function
 
-
-
-
 }); //end of document ready
-
-
