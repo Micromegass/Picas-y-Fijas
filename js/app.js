@@ -15,29 +15,34 @@
 
 
 // creating random number and hiding table
+
+
+
 $(document).ready(function () {
 
-    $('.result').hide();
+     $('.result').hide();
 
-    //create array
-    var rand = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+     //create array
+     var rand = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
 
-    //shuffle array 
-    function shuffleArray(array) {
-        for (var i = array.length - 1; i > 0; i--) {
-            var j = Math.floor(Math.random() * (i + 1));
-            var temp = array[i];
-            array[i] = array[j];
-            array[j] = temp;
-        }
-        return array;
-    }
+     //shuffle array 
+     function shuffleArray(array) {
+         for (var i = array.length - 1; i > 0; i--) {
+             var j = Math.floor(Math.random() * (i + 1));
+             var temp = array[i];
+             array[i] = array[j];
+             array[j] = temp;
+         }
+         return array;
+      }
+    
 
-    //take out first 4 shuffled numbers
-    rand = shuffleArray(rand).slice(0, 4).join('');
-    console.log(rand);
+     //take out first 4 shuffled numbers
+     rand = shuffleArray(rand).slice(0, 4).join('');
+     console.log(rand);
 
-
+    
+    
     //splitting input into array and blocking input if number longer than 4 digits or repeating numbers
     $('#input').on('keypress', function (e) {
         if (e.which == 13) {
@@ -46,7 +51,10 @@ $(document).ready(function () {
             if (rand == number) {
                 $(this).addClass('scale');
                 $('.result').show();
-
+                
+                $('button').on('click', function () {
+                    $('input').removeClass('scale');
+                });
 
 
             } else {
@@ -98,7 +106,7 @@ $(document).ready(function () {
             }
         }
 
-
+    
 
         //check for duplicates
         function duplicates(array) {
@@ -114,6 +122,13 @@ $(document).ready(function () {
 
 
 
+    
+
     }); //end of keypress function
 
+
+
+
 }); //end of document ready
+
+

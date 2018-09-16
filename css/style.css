@@ -1,10 +1,8 @@
-
-
 body {
     background: #f5f5f2;
     font-family: 'Helvetica Neue', sans-serif;
     text-align: center;
-    
+
 }
 
 #input {
@@ -18,21 +16,36 @@ body {
 
 .color {
 
-    color:red;
+    color: red;
 }
 
 
 table {
 
-    align:center;
+    align: center;
 
 }
 
 
 .scale {
 
-  background: rgba(0, 0, 0, 0.5);
-  transform: scale(46);
-    
+    background: rgba(0, 0, 0, 0.7);
+    transform: scale(46);
 
+
+}
+
+#win {
+
+    font-size: 60px;
+    color: whitesmoke;
+    
+}
+
+
+.result {
+position: absolute;
+top: 40%;
+/* position the top  edge of the element at the middle of the parent */
+left: 40%;
 }
